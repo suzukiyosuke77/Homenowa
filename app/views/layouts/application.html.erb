@@ -9,12 +9,10 @@
     <script src="https://kit.fontawesome.com/1a9f376056.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
    <body>
      <header>
-
      <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
      <a class="navbar-brand" href="#">ホメノワ</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +21,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
           <ul class="navbar-nav">
             
-            
+<!-- 実装予定 -->          
 <%# if current_user.admin? %>
   <!-- 管理者のみが見えるコンテンツ -->
 <%# elsif current_user.guest? %>
@@ -92,14 +90,11 @@
 
             <% end %>
             
-
           </ul>
         </div>
       </nav>
-
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-  
     </header>
     <%= yield %>
   </body>

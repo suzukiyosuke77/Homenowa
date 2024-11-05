@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/userinfo", user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2 class="mb-4">すべてのレビュー</h2>
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">投稿者</th>
+            <th scope="col">タイトル</th>
+            <th scope="col">内容</th>
+            <th scope="col">タグ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.user.name, user_path(post.user_id), class: "text-decoration-none" %></td>
+              <td>
+                <%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %>
+              </td>
+              <td><strong><%= truncate(post.body, length: 50) %></strong></td>
+              <td><%= post.category %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

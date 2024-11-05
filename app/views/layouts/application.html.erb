@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homenowa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/1a9f376056.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+   <body>
+     <header>
+
+     <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+     <a class="navbar-brand" href="#">ホメノワ</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
+          <ul class="navbar-nav">
+            
+            
+<%# if current_user.admin? %>
+  <!-- 管理者のみが見えるコンテンツ -->
+<%# elsif current_user.guest? %>
+  <!-- ゲスト会員向けのコンテンツ -->
+<%# else %>
+  <!-- 一般会員向けのコンテンツ -->
+<%# end %>
+            
+            <% if user_signed_in? %>
+
+          　<li class="nav-item">
+              <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-house"></i> トップ
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to posts_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-book-open"></i> レビューを見る
+              <% end %>
+            </li>
+            
+            <li>
+              <%= link_to new_post_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-pen-nib"></i> 新規投稿
+              <% end %>
+            </li>
+            
+            <li>
+              <%= link_to edit_user_path(current_user), class: "nav-link text-light" do %>
+                <i class="fa-solid fa-pen-nib"></i> 会員編集
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-right-from-bracket"></i></i> ログアウト
+              <% end %>
+            </li>
+
+            <% else %>
+
+            <li class="nav-item">
+              <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-house"></i> トップ
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to posts_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-book-open"></i> レビューを見る
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-user-plus"></i> 会員登録
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-right-to-bracket"></i> ログイン
+              <% end %>
+            </li>
+
+            <% end %>
+            
+
+          </ul>
+        </div>
+      </nav>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+  
+    </header>
+    <%= yield %>
+  </body>
+</html>

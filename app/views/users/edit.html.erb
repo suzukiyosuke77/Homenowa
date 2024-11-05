@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>会員情報</h2>
+      <% if @user.errors.any? %>
+      <h3><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h3>
+        <ul> <!-- https://qiita.com/ryouya3948/items/d39fedc511402f4c390d -->
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+       </ul>
+       <% end %>
+      <%= form_with model: @user, method: :patch do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "会員名" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :introduction, "自己紹介" %><br>
+          <%= f.text_field :introduction, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :profile_image, "プロフィール画像" %><br>
+          <%= f.file_field :profile_image, accept: "image/*" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "登録メールアドレス" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+        
+        
+        <div>
+          <%= f.submit "Update User", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

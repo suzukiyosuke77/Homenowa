@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   before_action :authenticate_user!, only: [:edit, :update]
-  
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
   end
-  
+
   def edit
     @user = User.find_by(id: params[:id])
     if @user.nil?
       redirect_to user_path(current_user), alert: "会員情報が見つかりません…"
     end
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -23,31 +23,31 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def index
     @user = User.find(params[:id])
     @users = User.all
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "会員情報を削除しました。"
     redirect_to :root
   end
-  
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email,:introduction)
+    params.require(:user).permit(:name, :email, :introduction)
   end
-  
+
   def is_matching_login_user
     if current_user.nil?
       redirect_to root_path, alert: "ログインが必要です。"
       return
     end
-    
+
     user = User.find_by(id: params[:id])
     if user.nil?
       redirect_to user_path(current_user), alert: "会員が見つかりません。"

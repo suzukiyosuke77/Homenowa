@@ -18,7 +18,9 @@
   <tbody>
     <tr>
       <td><%= user.name %></td>
-      <td><%= user.introduction %></td>
+      <td><% if user.introduction.present? %>
+      <%= user.introduction %>
+      <% end %></td>
     </tr>
   </tbody>
 </table>

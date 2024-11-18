@@ -4,7 +4,7 @@
       <h2>Editing Book</h2>
       <% if @post.errors.any? %>
       <h3><%= pluralize(@post.errors.count, "つのエラーがあります") %>:</h3>
-        <ul> <!-- https://qiita.com/ryouya3948/items/d39fedc511402f4c390d -->
+        <ul>
         <% @post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>

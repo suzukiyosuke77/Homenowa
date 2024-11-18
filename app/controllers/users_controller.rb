@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     if user.nil?
       redirect_to user_path(current_user), alert: "会員が見つかりません。"
     elsif user.id != current_user.id
-      redirect_to edit_user_path(current_user), alert: "アクセス権がありません。"
+      redirect_to edit_user_path(current_user), alert: "アクセス権限がありません。"
     end
   end
 

@@ -21,15 +21,6 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
           <ul class="navbar-nav">
             
-<!-- 実装予定 -->          
-<%# if current_user.admin? %>
-  <!-- 管理者のみが見えるコンテンツ -->
-<%# elsif current_user.guest? %>
-  <!-- ゲスト会員向けのコンテンツ -->
-<%# else %>
-  <!-- 一般会員向けのコンテンツ -->
-<%# end %>
-            
             <% if user_signed_in? %>
 
           　<li class="nav-item">
@@ -43,14 +34,20 @@
                 <i class="fa-solid fa-book-open"></i> レビューを見る
               <% end %>
             </li>
+          
+            <li class="nav-item">
+              <%= link_to users_path, class: "nav-link text-light" do %>
+                <i class="fa-solid fa-users"></i> 登録会員一覧を見る
+              <% end %>
+            </li>
             
-            <li>
+            <li class="nav-item">
               <%= link_to new_post_path, class: "nav-link text-light" do %>
                 <i class="fa-solid fa-pen-nib"></i> 新規投稿
               <% end %>
             </li>
             
-            <li>
+            <li class="nav-item">
               <%= link_to edit_user_path(current_user), class: "nav-link text-light" do %>
                 <i class="fa-solid fa-person"></i> マイページ(会員編集)
               <% end %>

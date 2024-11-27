@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :is_matching_login_post_user, only: [:show, :edit, :update, :destroy]
+  before_action :is_matching_login_post_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create]
 
   def new
@@ -19,13 +19,14 @@ class PostsController < ApplicationController
 
   def index
     @users = User.all
-    @posts = Post.all
     @user = current_user
+    @posts = Post.all
   end
 
   def show
     @post = Post.find_by(id: params[:id])
     @user = @post.user
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -55,19 +56,8 @@ class PostsController < ApplicationController
   end
 
   def is_matching_login_post_user
-    unless current_user
-      redirect_to new_user_session_path, alert: "ログインが必要です"
-      return
-    end
-
     post = Post.find_by(id: params[:id])
-  
-    unless post
-      redirect_to posts_path, alert: "投稿が見つかりません"
-      return
-    end
-    
-    unless post.user.id == current_user.id
+    unless post && post.user == current_user
       redirect_to posts_path, alert: "権限がありません"
     end
   end

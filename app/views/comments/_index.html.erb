@@ -1,0 +1,24 @@
+<table>
+  <tbody>
+    <% post.post_comments.each do |post_comment| %>
+      <tr>
+        <td>
+          <% if post_comment.user %>
+            <%= link_to user_path(post_comment.user) do %>
+              <%= image_tag post_comment.user.get_profile_image(50, 50) %><br>
+              <%= "#{post_comment.user.name}さんがコメントしました。" %>
+            <% end %>
+          <% else %>
+            <span>Unknown User</span>
+          <% end %>
+        </td>
+        <td><%= post_comment.comment %></td>
+        <td>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+<h1>ユーザー一覧</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>名前</th>
+    <th>Email</th>
+    <th>操作</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= link_to '詳細', admin_user_path(user) %>
+        <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

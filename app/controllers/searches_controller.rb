@@ -8,14 +8,15 @@ class SearchesController < ApplicationController
   def search
     @range = params[:range]
     @word = params[:word]
+    @posts = []
+    @users = []
 
-    if @range == "User"
+    if @range == "会員"
       @users = User.looks(params[:search], params[:word])
-    else
+    elsif @range == "投稿"
       @posts = Post.looks(params[:search], params[:word])
     end
-    
+
     render :search_result
   end
-
 end

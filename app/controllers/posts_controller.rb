@@ -48,7 +48,11 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to "/posts"
   end
-
+  
+  def search
+    redirect_to search_searches_path(params)
+  end
+  
   private
 
   def post_params

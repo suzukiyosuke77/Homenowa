@@ -1,22 +1,63 @@
-<h2>検索結果</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/userinfo", user: @user %>
+    </div>
 
-<table class="table table-hover table-inverse">
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
+    <div class="col-md-8 offset-md-1">
+      <% if @range == "会員" %>
+        <h2 class="mb-4">検索結果: 会員</h2>
+        <table class="table table-hover table-bordered shadow-sm">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">名前</th>
+              <th scope="col">プロフィール</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @users.present? %>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= link_to user.name, user_path(user.id), class: "text-decoration-none" %></td>
+                  <td><%= truncate(user.introduction, length: 50) %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="3">該当する会員が見つかりませんでした。</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% elsif @range == "投稿" %>
+        <h2 class="mb-4">検索結果: 投稿</h2>
+        <table class="table table-hover table-bordered shadow-sm">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">投稿者</th>
+              <th scope="col">タイトル</th>
+              <th scope="col">内容</th>
+              <th scope="col">タグ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @posts.present? %>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td><%= link_to post.user.name, user_path(post.user_id), class: "text-decoration-none" %></td>
+                  <td><%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %></td>
+                  <td><strong><%= truncate(post.body, length: 50) %></strong></td>
+                  <td><%= post.category %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="4">該当する投稿が見つかりませんでした。</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
-    </tbody>
-  <% else %>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= post.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+    </div>
+  </div>
+</div>

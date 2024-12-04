@@ -11,82 +11,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-   <body>
-     <header>
-     <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-     <a class="navbar-brand" href="#">ホメノワ</a>
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+        <a class="navbar-brand" href="#">ホメノワ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
           <ul class="navbar-nav">
-            
-            <% if user_signed_in? %>
-
-          　<li class="nav-item">
-              <%= link_to root_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-house"></i> トップ
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to posts_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-book-open"></i> レビューを見る
-              <% end %>
-            </li>
-          
-            <li class="nav-item">
-              <%= link_to users_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-users"></i> 登録会員一覧を見る
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to new_post_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-pen-nib"></i> 新規投稿
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to edit_user_path(current_user), class: "nav-link text-light" do %>
-                <i class="fa-solid fa-person"></i> マイページ(会員編集)
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-right-from-bracket"></i></i> ログアウト
-              <% end %>
-            </li>
-
-            <% else %>
-
-            <li class="nav-item">
-              <%= link_to root_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-house"></i> トップ
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to posts_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-book-open"></i> レビューを見る
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-user-plus"></i> 会員登録
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to new_user_session_path, class: "nav-link text-light" do %>
-                <i class="fa-solid fa-right-to-bracket"></i> ログイン
-              <% end %>
-            </li>
-
-            <% end %>
-            
+            <%= render 'shared/header_links' %>
           </ul>
         </div>
       </nav>

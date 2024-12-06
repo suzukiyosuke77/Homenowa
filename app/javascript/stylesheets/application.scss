@@ -1,1 +1,8 @@
-@use '~bootstrap/scss/bootstrap';
+@use "bootstrap";
+
+body {
+  background-color: #FFFCF8; /* 明るいグレー */
+  color: #333; /* 濃いグレー */
+  min-height: 100vh; /* 背景が画面全体を覆うように設定 */
+  margin: 0;
+}

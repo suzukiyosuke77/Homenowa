@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def index
     @users = User.all
     @user = current_user
-    @posts = Post.all
+    @posts = Post.approved
   end
 
   def show

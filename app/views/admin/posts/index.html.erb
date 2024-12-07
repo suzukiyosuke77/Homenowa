@@ -1,21 +1,33 @@
-<h1>未承認レビュー一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>内容</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.id %></td>
-        <td><%= truncate(post.body, length: 100) %></td>
-        <td>
-          <%= link_to "詳細", admin_post_path(post), class: "btn btn-primary" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <h1 class="text-center mb-4">未承認レビュー一覧</h1>
+
+      <table class="table table-bordered table-hover shadow-lg">
+        <thead class="table-light">
+          <tr>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col" class="text-center">投稿者名</th>
+            <th scope="col" class="text-center">投稿内容</th>
+            <th scope="col" class="text-center">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td class="text-center align-middle"><%= post.id %></td>
+              <td class="text-center align-middle"><%= post.user.name %></td>
+              <td class="align-middle">
+                <%= truncate(post.body, length: 100) %>
+              </td>
+              <td class="text-center align-middle">
+                <%= link_to "承認", approve_admin_post_path(post), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "このレビューを承認しますか？" } %>
+                <%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

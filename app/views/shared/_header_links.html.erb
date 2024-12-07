@@ -1,5 +1,5 @@
 <% if admin_signed_in? %>
-  <!-- 管理者用ヘッダー -->
+  <!-- 管理者用ヘッダーです -->
   <li class="nav-item">
     <%= link_to admin_users_path, class: "nav-link text-light" do %>
       <i class="fa-solid fa-user-cog"></i> 管理者ダッシュボード
@@ -11,7 +11,7 @@
     <% end %>
   </li>
 <% elsif user_signed_in? %>
-  <!-- 一般ユーザー用ヘッダー -->
+  <!-- 一般ユーザー用ヘッダーです -->
   <li class="nav-item">
     <%= link_to root_path, class: "nav-link text-light" do %>
       <i class="fa-solid fa-house"></i> トップ
@@ -24,7 +24,7 @@
   </li>
   <li class="nav-item">
     <%= link_to new_post_path, class: "nav-link text-light" do %>
-      <i class="fa-solid fa-book-open"></i> 新規投稿
+      <i class="fa-solid fa-pen"></i> 新規投稿
     <% end %>
   </li>
   <li class="nav-item">
@@ -33,10 +33,15 @@
     <% end %>
   </li>
 <% else %>
-  <!-- ゲスト用ヘッダー -->
+  <!-- ゲスト用ヘッダーです -->
   <li class="nav-item">
     <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
       <i class="fa-solid fa-user-plus"></i> 会員登録
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to posts_path, class: "nav-link text-light" do %>
+      <i class="fa-solid fa-book-open"></i> レビューを見る
     <% end %>
   </li>
   <li class="nav-item">

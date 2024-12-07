@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users, only: [:index, :show, :destroy]
-    resources :posts, only: [:index, :show, :update]
+    resources :posts, only: [:index, :show, :update] do
+      member do
+        patch :approve
+      end
+    end
   end
   
   devise_for :users

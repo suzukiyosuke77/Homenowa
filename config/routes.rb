@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'posts/ranking', to: 'posts#ranking', as: :post_ranking
   
   devise_for :users
   

@@ -21,10 +21,10 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
-  resources :searches, only: [:index] do
+  resources :searches, only: [] do
     collection do
       get :search
     end
   end
-  root "homes#top"
+  root to: "posts#index"
 end

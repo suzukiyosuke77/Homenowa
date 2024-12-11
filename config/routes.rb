@@ -26,5 +26,5 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  root to: "posts#index"
+  root "homes#top"
 end

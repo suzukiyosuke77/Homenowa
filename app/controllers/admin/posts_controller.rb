@@ -8,8 +8,17 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
+  
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      redirect_to admin_posts_path, notice: '投稿を削除しました。'
+    else
+      redirect_to admin_posts_path, alert: '投稿の削除に失敗しました。'
+    end
+  end
 
-  def update
+  def approve
     @post = Post.find(params[:id])
     if params[:status] == "approved"
       @post.approved!

@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users, only: [:index, :show, :destroy]
-    resources :posts, only: [:index, :show, :update] do
+    resources :posts, only: [:index, :show, :approve, :destroy] do
       member do
         patch :approve
       end
     end
   end
+  
   get 'posts/ranking', to: 'posts#ranking', as: :post_ranking
   
   devise_for :users

@@ -21,8 +21,8 @@
                 <%= truncate(post.body, length: 100) %>
               </td>
               <td class="text-center align-middle">
-                <%= link_to "承認", approve_admin_post_path(post), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "このレビューを承認しますか？" } %>
-                <%= link_to "削除", admin_post_path(post), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+                <%= link_to "承認", approve_admin_post_path(post, status: "approved"), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "このレビューを承認しますか？" } %>
+                <%= link_to "却下", approve_admin_post_path(post, status: "rejected"), method: :patch, class: "btn btn-danger btn-sm", data: { confirm: "このレビューを却下しますか？" } %>
               </td>
             </tr>
           <% end %>

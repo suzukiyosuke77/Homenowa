@@ -44,10 +44,7 @@ class PostsController < ApplicationController
   end
   
   def ranking
-    @posts = Post.left_joins(:likes)
-                 .group(:id)
-                 .order('COUNT(likes.id) DESC')
-                 .limit(10) # 上位10件を取得
+    @posts = Post.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC').limit(10)
   end
 
   def destroy

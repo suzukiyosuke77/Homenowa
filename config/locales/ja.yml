@@ -3,18 +3,25 @@ ja:
   activerecord:
     models:
       post: "投稿"
+      user: "会員" 
     attributes: 
       post:
         title: "タイトル"
         body: "内容"
         category: "タグ"
+      user:
+        name: "会員名"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
-        #blank: "%{attribute}を入力してください"
+      attributes:
+        user:
+          name:
+            blank: "を入力してください"
+            too_short: "は%{count}文字以上で入力してください"
   date:
     abbr_day_names:
     - 日
@@ -120,7 +127,7 @@ ja:
       wrong_length: は%{count}文字で入力してください
     template:
       body: 次の項目を確認してください
-      header: "%{model}に%{count}個のエラーが発生しました"
+      header: "%{count}個のエラーが発生しました"
   helpers:
     select:
       prompt: 選択してください
@@ -128,6 +135,13 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    errors:
+      format: "%{attribute} %{message}"
+      header:
+        one:   "%{model}に1件のエラーがあります。"
+        other: "%{model}に%{count}件のエラーがあります。"
+      messages:
+        blank: "を入力してください"
   number:
     currency:
       format:
@@ -185,7 +199,7 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y/%m/%d %H:%M"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後

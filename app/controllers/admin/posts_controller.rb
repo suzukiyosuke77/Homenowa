@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.pending # 未承認の投稿を取得
+    @posts = Post.pending
   end
 
   def show

@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  # ログインしていないユーザーを制限
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  # ログインユーザー以外の投稿編集・削除を制限
   before_action :is_matching_login_post_user, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create]
 
   def new
     @post = Post.new
@@ -24,9 +26,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
-    @user = @post.user
-    @post_comment = PostComment.new
+    @post = Post.find_by(id: params[:id], status: "approved")
+    if @post.nil?
+      redirect_to posts_path, alert: "投稿が見つかりません"
+    else
+      @user = @post.user
+      @post_comment = PostComment.new
+    end
   end
 
   def edit
@@ -42,32 +48,39 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   def ranking
     @posts = Post.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC').limit(10)
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy
-    redirect_to "/posts"
+    @post = Post.find(params[:id])
+    if @post.user == current_user
+      @post.destroy
+      redirect_to posts_path, notice: "投稿を削除しました"
+    else
+      redirect_to posts_path, alert: "権限がありません"
+    end
   end
-  
+
   def search
-    redirect_to search_searches_path(params)
+    redirect_to search_searches_path(search_params)
   end
-  
+
   private
+
+  def is_matching_login_post_user
+    @post = Post.find_by(id: params[:id])
+    if @post.nil? || @post.user != current_user
+      redirect_to posts_path, alert: "権限がありません"
+    end
+  end
 
   def post_params
     params.require(:post).permit(:title, :body, :category)
   end
 
-  def is_matching_login_post_user
-    post = Post.find_by(id: params[:id])
-    unless post && post.user == current_user
-      redirect_to posts_path, alert: "権限がありません"
-    end
+  def search_params
+    params.permit(:keyword, :category)
   end
-
 end

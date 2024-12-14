@@ -16,12 +16,12 @@
   </thead>
   <tbody>
     <tr>
-      <% if user.present? %>
+      <%# if user.present? %>
         <td><%= user.name %></td>
         <td><%= user.introduction.presence || "自己紹介がありません" %></td>
-      <% else %>
-        <td>ユーザー情報が見つかりません</td>
-      <% end %>
+      <%# else %>
+        <!--<td>ユーザー情報が見つかりません</td> -->
+      <%# end %>
     </tr>
   </tbody>
 </table>

@@ -18,11 +18,11 @@ class PostsController < ApplicationController
       render :new
     end
   end
-
+  
   def index
     @users = User.all
-    @user = current_user
     @posts = Post.approved
+    @user = current_user if user_signed_in?
   end
 
   def show
@@ -83,4 +83,5 @@ class PostsController < ApplicationController
   def search_params
     params.permit(:keyword, :category)
   end
+  
 end

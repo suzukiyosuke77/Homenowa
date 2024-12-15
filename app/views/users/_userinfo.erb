@@ -17,30 +17,17 @@
 
   <div class="row">
     <%= link_to edit_user_path(user), class: "btn btn-block btn-outline-secondary" do %>
-      <i class="fa-solid fa-user-gear"></i>
+      <i class="fa-solid fa-user-gear"></i> プロフィール編集
     <% end %>
     <% if user_signed_in? && current_user == user && user.email != "test@example.com" %>
       <div class="mt-3">
-        <%= link_to "退会", user_path(user.id), class: "btn btn-block btn-outline-secondary", method: :delete, "data-confirm" => "本当に退会しますか？" %>
+        <%= link_to "退会", user_path(user.id), class: "btn btn-block btn-outline-secondary", method: :delete, data: { confirm: "本当に退会しますか？" } %>
       </div>
     <% end %>
   </div>
-  
-  <% else %>
-    <h2>あなたはゲスト会員です</h2>
-    <table class="table">
-    <thead class="table-left">
-      <tr>
-        <th scope="col">会員名</th>
-        <th scope="col">自己紹介</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
+
+<% else %>
+  <h2>ゲストユーザー</h2>
+  <p>会員登録すると、プロフィールや投稿機能をご利用いただけます！</p>
+  <%= link_to "会員登録はこちら", new_user_registration_path, class: "btn btn-primary" %>
 <% end %>

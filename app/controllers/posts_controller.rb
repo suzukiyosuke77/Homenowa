@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id], status: "approved")
     if @post.nil?
-      redirect_to posts_path, alert: "投稿が見つかりません"
+      redirect_to posts_path
     else
       @user = @post.user
       @post_comment = PostComment.new
@@ -69,7 +69,11 @@ class PostsController < ApplicationController
   
   def category
     @category = params[:category]
-    @posts = Post.tagged_with(@category, on: :categories)
+    if @category.present?
+      @posts = Post.tagged_with(@category, on: :categories)
+    else
+      redirect_to posts_path, alert: "カテゴリを入力してください"
+    end
   end
 
   private

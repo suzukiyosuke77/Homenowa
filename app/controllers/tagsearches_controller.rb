@@ -1,10 +1,7 @@
 class TagsearchesController < ApplicationController
-  
   def search
-    @model = Post  #search機能とは関係なし
     @word = params[:content]
-    @s = Book.where("category LIKE?","%#{@word}%")
+    @posts = Post.tagged_with(@word, on: :categories)
     render "tagsearches/tagsearch"
   end
-
 end

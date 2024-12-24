@@ -25,16 +25,20 @@
 
         <div class="form-group mb-4">
           <label class="form-label fw-bold fs-5">内容</label>
-          <%= f.text_area :body, class: "form-control", rows: 6, placeholder: "圧巻の攻防！チャンピオンと挑戦者が全力を尽くしてぶつかり合う、最高の試合でした。序盤から中盤まで互いに相手の攻撃を読み合い、まさに緊迫感の連続！技術と戦略が光る場面が多く、プロレスファンとしての興奮が止まりませんでした。
-特にクライマックスでの攻防は圧倒的！挑戦者が何度も大技を狙うものの、チャンピオンが絶妙なタイミングで防御を固めて見せたシーンには痺れました。そして最終局面、勝敗が決まる瞬間まで手に汗握る展開で、まさに観客全員が引き込まれていたと思います。
-選手たちの心意気と、限界を超えたパフォーマンスに感動しました。この試合は長く語り継がれるべき名勝負だと思います！" %>
+          <%= f.text_area :body, class: "form-control", rows: 6, placeholder: "圧巻の攻防！チャンピオンと挑戦者が全力を尽くしてぶつかり合う、最高の試合でした。" %>
         </div>
 
         <div class="form-group mb-4">
-          <label class="form-label fw-bold fs-5">タグ</label>
-          <%= f.text_field :category, class: "form-control", placeholder: "例：プロレス、映像作品(映画・アニメ）、舞台(演劇、ミュージカル、お笑い)" %>
+          <label class="form-label fw-bold fs-5">カテゴリ（[,]区切りで入力できます）</label>
+          <%= f.text_field :category_list, class: "form-control", placeholder: "例: 映画, アクション" %>
         </div>
 
+        <div class="form-group mb-4">
+          <label class="form-label fw-bold fs-5">評価 <p>☆☆★（是非観てほしい！）</p><p>☆★★（超オススメ！観て！）</p><p>★★★（観ないと人生損します）</p> </label>
+          <div id="star-rating"></div>
+          <%= f.hidden_field :rating, id: "post_rating" %>
+        </div>
+        
         <div class="text-center">
           <%= f.submit '投稿', class: "btn btn-primary btn-lg mt-4 px-5 shadow-sm" %>
         </div>

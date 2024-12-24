@@ -1,0 +1,14 @@
+<h1 class="mb-4">タグ検索結果</h1>
+
+<% if @posts.any? %>
+  <ul class="list-group">
+    <% @posts.each do |post| %>
+      <li class="list-group-item">
+        <%= link_to post.title, post_path(post), class: "fw-bold text-decoration-none" %> 
+        （カテゴリ: <%= post.category_list.join(', ') %>）
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="text-muted">該当する投稿が見つかりませんでした。</p>
+<% end %>

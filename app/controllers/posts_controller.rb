@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   
   def index
     @users = User.all
-    @posts = Post.approved
+    @posts = Post.approved.page(params[:page]).per(10).most_liked_in_last_week
     @user = current_user if user_signed_in?
   end
 
@@ -66,6 +66,11 @@ class PostsController < ApplicationController
   def search
     redirect_to search_searches_path(search_params)
   end
+  
+  def category
+    @category = params[:category]
+    @posts = Post.tagged_with(@category, on: :categories)
+  end
 
   private
 
@@ -77,7 +82,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :category)
+    params.require(:post).permit(:title, :body, :rating, :category_list)
   end
 
   def search_params

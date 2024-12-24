@@ -5,9 +5,17 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :category, presence: true
+  validate :validate_categories_presence
   validates :title, presence: true
   validates :body, presence: true
+  
+  acts_as_taggable_on :categories
+  #(参照)https://qiita.com/guri3/items/c667ce2bfbb5baca4b5a
+  
+  scope :most_liked_in_last_week, -> {
+    left_joins(:likes).where('likes.created_at >= ? OR likes.id IS NULL', 1.week.ago)
+    .group(:id).select('posts.*, COUNT(likes.id) AS likes_count').order('likes_count DESC')
+  }
 
   def self.looks(search, word)
     if search == "perfect_match"
@@ -22,5 +30,11 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     likes.exists?(user: user)
   end
-
+  
+  def validate_categories_presence
+    if category_list.empty?
+      errors.add(:category_list, "を入力してください")
+    end
+  end
+  
 end

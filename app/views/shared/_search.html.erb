@@ -1,10 +1,27 @@
 <% if user_signed_in? %>
-  <div class="search_form">
+  <!-- キーワード検索フォーム -->
+  <div class="search_form mb-4">
     <%= form_with url: search_searches_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['会員'], ['投稿']]) %>
-      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-      <%= f.submit "検索" %>
+      <div class="form-group">
+        <%= f.text_field :word, placeholder: "キーワードを入力", class: "form-control mb-2" %>
+      </div>
+      <div class="form-group">
+        <%= f.select :range, options_for_select([['会員', '会員'], ['投稿', '投稿']]), {}, class: "form-control mb-2" %>
+      </div>
+      <div class="form-group">
+        <%= f.select :search, options_for_select([["完全一致", "perfect_match"], ["部分一致", "partial_match"]]), {}, class: "form-control mb-3" %>
+      </div>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <!-- タグ検索フォーム -->
+  <div class="search_form mb-4">
+    <%= form_with url: tag_search_path, method: :get, local: true do |f| %>
+      <div class="form-group">
+        <%= f.text_field :content, placeholder: "カテゴリを入力", class: "form-control mb-3" %>
+      </div>
+        <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
   </div>
 <% end %>

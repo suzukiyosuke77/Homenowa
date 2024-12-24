@@ -14,7 +14,7 @@ end
 
 def destroy
   PostComment.find_by(id: params[:id], post_id: params[:post_id]).destroy
-  redirect_to request_refer
+  redirect_to request.referer
 end
 
 private

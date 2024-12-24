@@ -71,3 +71,5 @@ gem "net-pop"
 gem "net-imap"
 gem 'image_processing', '~> 1.2'
 gem 'faker'
+gem 'kaminari'
+gem 'acts-as-taggable-on'

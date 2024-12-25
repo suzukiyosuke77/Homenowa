@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :destroy]
     resources :posts, only: [:index, :show, :approve, :destroy] do
       member do
+        get :approve
         patch :approve
       end
     end

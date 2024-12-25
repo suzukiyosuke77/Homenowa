@@ -3,8 +3,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      redirect_to root_path, alert: "無効な会員です…"
+    else
+      @posts = @user.posts
+    end
   end
 
   def edit

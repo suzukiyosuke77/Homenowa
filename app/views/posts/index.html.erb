@@ -35,7 +35,9 @@
                 <%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %>
               </td>
               <td><strong><%= truncate(post.body, length: 50) %></strong></td>
-              <td><strong><%= post.rating %></strong></td>
+              <td>
+                <div class="star-rating-display" data-score="<%= post.rating %>"></div>
+              </td>
               <td><%= post.likes_count %></td>
               <td><%= post.category_list %></td>
             </tr>

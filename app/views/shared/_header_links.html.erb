@@ -2,19 +2,26 @@
   <!-- 管理者用ヘッダーです -->
   <li class="nav-item">
     <%= link_to admin_users_path, class: "nav-link text-light" do %>
-      <i class="fa-solid fa-user-cog"></i> 管理者ダッシュボード
+      <i class="fa-solid fa-user-cog"></i> 会員一覧
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do %>
-      <i class="fa-solid fa-right-from-bracket"></i> 管理者ログアウト
+    <%= link_to admin_posts_path, class: "nav-link text-light" do %>
+      <i class="fa-solid fa-book-open"></i> 投稿一覧
     <% end %>
   </li>
+
   <li class="nav-item">
     <%= link_to post_ranking_path, class: 'nav-link text-light' do %>
       <i class="fa-solid fa-ranking-star"></i> 投稿ランキング
     <% end %>
   </li>
+  <li class="nav-item">
+    <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-link text-decoration-none" do %>
+      <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+    <% end %>
+  </li>  
+
 <% elsif user_signed_in? %>
   <!-- 一般ユーザー用ヘッダーです -->
   <li class="nav-item">
@@ -38,10 +45,11 @@
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+    <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-link text-decoration-none" do %>
       <i class="fa-solid fa-right-from-bracket"></i> ログアウト
     <% end %>
   </li>
+  
 <% else %>
   <!-- ゲスト用ヘッダーです -->
   <li class="nav-item">

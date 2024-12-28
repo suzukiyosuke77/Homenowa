@@ -16,6 +16,7 @@ end
 Post.find_or_create_by!(title: "おもしろ落語でした", user: test_user) do |post|
   post.body = "省略"
   post.category_list = "落語,滑稽噺"
+  post.rating = 3
 end
 
 # サンプルデータ
@@ -30,7 +31,11 @@ end
   Post.create!(
     title: Faker::Lorem.sentence(word_count: 5),
     body: Faker::Lorem.paragraph(sentence_count: 3),
-    category_list: ["落語", "歌舞伎", "映画", "アニメ", "ホラー", "音楽"].sample(2).join(","),
+    category_list: ["落語","滑稽噺","怪談噺","人情噺", 
+    "歌舞伎","時代物","世話物","舞踊", 
+    "映画", "アニメ", "ホラー","SF","アクション","伝記","コメディ", "犯罪","ドキュメンタリー","ドラマ","ファミリー","ファンタジー","ミステリー","スリラー",
+    "音楽","ポップス","ロック","ダンス","ジャズ","ラテン","クラシック","ラップ","ハードロック","メタル","ソフトロック","ゴシック","歌謡曲"].sample(2).join(","),
+    rating: 3,
     user: user
   )
 end

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  # ログインしていないユーザーを制限
+  # ログインしていないユーザーを制限!
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  # ログインユーザー以外の投稿編集・削除を制限
+  # ログインユーザー以外の投稿編集・削除を制限!
   before_action :is_matching_login_post_user, only: [:edit, :update, :destroy]
 
   def new

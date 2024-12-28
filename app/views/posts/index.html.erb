@@ -27,26 +27,26 @@
         <tbody>
           <% @posts.each do |post| %>
             <tr>
-              <td><%= l post.created_at %></td>
+              <td><%= l post.created_at, format: :short %></td>
               <td>
                 <%= link_to post.user.name, user_path(post.user_id), class: "text-decoration-none" %>
               </td>
               <td>
                 <%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %>
               </td>
-              <td><strong><%= truncate(post.body, length: 50) %></strong></td>
-<td>
-  <div
-    id="star_<%= post.id %>"
-    class="star-rating-display"
-    data-score="<%= post.rating %>"
-    data-star-on="<%= asset_path('star-on.png') %>"
-    data-star-off="<%= asset_path('star-off.png') %>"
-    data-star-half="<%= asset_path('star-half.png') %>"
-  ></div>
-</td>
+              <td><%= truncate(post.body, length: 50, separator: ' ') %></td>
+              <td>
+                <div
+                  id="star_<%= post.id %>"
+                  class="star-rating-display"
+                  data-score="<%= post.rating %>"
+                  data-star-on="<%= asset_path('star-on.png') %>"
+                  data-star-off="<%= asset_path('star-off.png') %>"
+                  data-star-half="<%= asset_path('star-half.png') %>"
+                ></div>
+              </td>
               <td><%= post.likes_count %></td>
-              <td><%= post.category_list %></td>
+              <td><%= post.category_list.join(', ') %></td>
             </tr>
           <% end %>
         </tbody>

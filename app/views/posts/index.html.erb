@@ -1,12 +1,10 @@
 <div class="container my-4">
   <div class="row">
     <div class="col-md-3">
-      <div class="bg-light p-3 shadow-sm rounded">
         <%= render "users/userinfo", user: @user %>
-      </div>
     </div>
 
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-9">
       <div class="mb-4">
         <%= render 'shared/search' %>
       </div>
@@ -15,27 +13,27 @@
       <table class="table table-hover table-bordered shadow-sm">
         <thead class="table-light">
           <tr>
-            <th scope="col">投稿日</th>
-            <th scope="col">投稿者</th>
-            <th scope="col">タイトル</th>
-            <th scope="col">内容</th>
-            <th scope="col">評価</th>
-            <th scope="col">いいね数</th>
-            <th scope="col">推しカテゴリ</th>
+            <th scope="col" class="text-center" style="width: 10%;">投稿日</th>
+            <th scope="col" class="text-center" style="width: 15%;">投稿者</th>
+            <th scope="col" style="width: 20%;">タイトル</th>
+            <th scope="col" style="width: 35%;">内容</th>
+            <th scope="col" class="text-center" style="width: 10%;">評価</th>
+            <th scope="col" class="text-center" style="width: 5%;">いいね数</th>
+            <th scope="col" style="width: 15%;">推しカテゴリ</th>
           </tr>
         </thead>
         <tbody>
           <% @posts.each do |post| %>
             <tr>
-              <td><%= l post.created_at, format: :short %></td>
-              <td>
+              <td class="text-center"><%= l post.created_at, format: :short %></td>
+              <td class="text-center">
                 <%= link_to post.user.name, user_path(post.user_id), class: "text-decoration-none" %>
               </td>
               <td>
                 <%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %>
               </td>
-              <td><%= truncate(post.body, length: 50, separator: ' ') %></td>
-              <td>
+              <td><%= truncate(post.body, length: 100, separator: ' ') %></td>
+              <td class="text-center">
                 <div
                   id="star_<%= post.id %>"
                   class="star-rating-display"
@@ -45,13 +43,15 @@
                   data-star-half="<%= asset_path('star-half.png') %>"
                 ></div>
               </td>
-              <td><%= post.likes_count %></td>
+              <td class="text-center"><%= post.likes_count %></td>
               <td><%= post.category_list.join(', ') %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @posts %>
+      <div class="d-flex justify-content-center mt-4">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

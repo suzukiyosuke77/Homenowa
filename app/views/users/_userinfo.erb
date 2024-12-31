@@ -1,42 +1,41 @@
-<% if user.present? %>
-  <h2>会員詳細</h2>
-  <table class="table">
-    <thead class="table-left">
-      <tr>
-        <th scope="col">会員名</th>
-        <th scope="col">自己紹介</th>
-        <th scope="col">プロフィール画像</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.introduction.presence || "自己紹介がありません" %></td>
-        <td>
-          <% if user.profile_image.attached? %>
-            <%= image_tag user.get_profile_image(100, 100), alt: "プロフィール画像", class: "img-thumbnail" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "100x100", alt: "デフォルト画像", class: "img-thumbnail" %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <div class="row">
-    <div class="col-12 col-md-6">
-      <%= link_to edit_user_path(user), class: "btn btn-block btn-outline-secondary" do %>
+<div class="container">
+  <div class="bg-light p-4 shadow-lg rounded">
+    <h2 class="text-center mb-4">会員詳細</h2>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">項目</th>
+          <th scope="col">内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fw-bold">会員名</td>
+          <td><%= user.name %></td>
+        </tr>
+        <tr>
+          <td class="fw-bold">自己紹介</td>
+          <td><%= truncate(user.introduction.presence, length: 100, separator: ' ') || "自己紹介がありません" %></td>
+        </tr>
+        <tr>
+          <td class="fw-bold">プロフィール画像</td>
+          <td class="text-center">
+            <% if user.profile_image.attached? %>
+              <%= image_tag user.get_profile_image(150, 150), alt: "プロフィール画像", class: "img-thumbnail rounded-circle" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "150x150", alt: "デフォルト画像", class: "img-thumbnail rounded-circle" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between mt-4">
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary px-4" do %>
         <i class="fa-solid fa-user-gear"></i> プロフィール編集
       <% end %>
+      <% if user_signed_in? && current_user == user && user.email != "test@example.com" %>
+        <%= link_to "退会", user_path(user.id), class: "btn btn-outline-danger px-4", method: :delete, data: { confirm: "本当に退会しますか？" } %>
+      <% end %>
     </div>
-    <% if user_signed_in? && current_user == user && user.email != "test@example.com" %>
-      <div class="col-12 col-md-6 mt-3 mt-md-0">
-        <%= link_to "退会", user_path(user.id), class: "btn btn-block btn-outline-danger", method: :delete, data: { confirm: "本当に退会しますか？" } %>
-      </div>
-    <% end %>
   </div>
-<% else %>
-  <h2>ゲストユーザー</h2>
-  <p>会員登録すると、プロフィールや投稿機能をご利用いただけます！</p>
-  <%= link_to "会員登録はこちら", new_user_registration_path, class: "btn btn-primary" %>
-<% end %>
+</div>

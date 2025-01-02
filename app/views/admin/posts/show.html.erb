@@ -1,6 +1,11 @@
-<h1>レビュー詳細</h1>
-<p><%= @post.body %></p>
-
-<%= link_to "承認", admin_post_path(@post, status: :approved), method: :patch, class: "btn btn-success" %>
-<%= link_to "却下", admin_post_path(@post, status: :rejected), method: :patch, class: "btn btn-danger" %>
-<%= link_to "戻る", admin_posts_path, class: "btn btn-secondary" %>
+<div class="container my-4">
+  <div class="row">
+    <h2 class="mb-4">レビュー</h2>
+    <% @post.body.split('。').each do |sentence| %>
+      <p><%= sentence.strip %>。</p>
+    <% end %>
+      <%= link_to "承認", admin_post_path(@post, status: :approved), method: :patch, class: "btn btn-success" %>
+      <%= link_to "却下", admin_post_path(@post, status: :rejected), method: :patch, class: "btn btn-danger" %>
+      <%= link_to "戻る", admin_posts_path, class: "btn btn-secondary" %>
+  </div>
+</div>

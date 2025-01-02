@@ -8,6 +8,7 @@
           <tr>
             <th scope="col" class="text-center">ID</th>
             <th scope="col" class="text-center">投稿者名</th>
+            <th scope="col" class="text-center">タイトル</th>
             <th scope="col" class="text-center">投稿内容</th>
             <th scope="col" class="text-center">操作</th>
           </tr>
@@ -17,12 +18,13 @@
             <tr>
               <td class="text-center align-middle"><%= post.id %></td>
               <td class="text-center align-middle"><%= post.user.name %></td>
+              <td class="text-center align-middle"><%= link_to post.title, admin_post_path(post.id), class: "text-decoration-none fw-bold" %></td>
               <td class="align-middle">
                 <%= truncate(post.body, length: 100) %>
               </td>
               <td class="text-center align-middle">
-                <%= link_to "承認", approve_admin_post_path(post, status: "approved"), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "このレビューを承認しますか？" } %>
-                <%= link_to "却下", approve_admin_post_path(post, status: "rejected"), method: :patch, class: "btn btn-danger btn-sm", data: { confirm: "このレビューを却下しますか？" } %>
+                <%= link_to "レビュー承認", approve_admin_post_path(post, status: "approved"), method: :patch, class: "btn btn-success btn-sm", data: { confirm: "このレビューを承認しますか？" } %>
+                <%= link_to "レビュー却下", approve_admin_post_path(post, status: "rejected"), method: :patch, class: "btn btn-danger btn-sm", data: { confirm: "このレビューを却下しますか？" } %>
               </td>
             </tr>
           <% end %>

@@ -3,9 +3,7 @@
     <!-- 左側: ユーザー情報 -->
     <% if user_signed_in? %>
     <div class="col-md-3">
-      <div class="bg-light p-3 shadow-sm rounded">
-        <%= render "users/userinfo", user: @user %>
-      </div>
+      <%= render "users/userinfo", user: @user %>
     </div>
     <% end %>
 
@@ -24,9 +22,9 @@
           <% @posts.each do |post| %>
             <tr>
               <td>
-                <%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %>
+                <strong><%= link_to post.title, post_path(post.id), class: "text-decoration-none fw-bold" %></strong>
               </td>
-              <td><strong><%= truncate(post.body, length: 50) %></strong></td>
+              <td><strong><%= truncate(post.body, length: 40) %></strong></td>
               <td><%= post.category %></td>
             </tr>
           <% end %>

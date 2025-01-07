@@ -81,7 +81,7 @@ class PostsController < ApplicationController
   def is_matching_login_post_user
     @post = Post.find_by(id: params[:id])
     if @post.nil? || @post.user != current_user
-      redirect_to posts_path, alert: "権限がありません"
+      redirect_to posts_path, alert: "権限がありません!"
     end
   end
 

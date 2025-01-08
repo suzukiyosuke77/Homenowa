@@ -1,14 +1,20 @@
 <div class="container-fluid">
   <div class="row">
+    <!-- 会員情報 -->
     <div class="col-md-3">
       <%= render "users/userinfo", user: @user %>
     </div>
 
+    <!-- 検索とレビュー表示 -->
     <div class="col-md-9">
+      <!-- 検索フォームのコンテナ -->
       <div class="mb-4">
-        <%= render 'shared/search' %>
+        <div class="search-container" style="max-width: 600px; margin: 0;">
+          <%= render 'shared/search' %>
+        </div>
       </div>
 
+      <!-- レビューリスト -->
       <h2 class="mb-4">全ての承認されたレビュー</h2>
       <table class="table table-hover table-bordered shadow-sm w-100">
         <thead class="table-light">

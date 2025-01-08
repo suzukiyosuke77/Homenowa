@@ -12,7 +12,11 @@
         </tr>
         <tr>
           <td class="fw-bold">自己紹介</td>
-          <td><%= truncate(user.introduction.presence, length: 100, separator: ' ') || "自己紹介がありません" %></td>
+          <td>
+            <div style="max-height: 100px; overflow-y: auto;">
+              <%= user.introduction.presence || "自己紹介がありません" %>
+            </div>
+          </td>
         </tr>
         <tr>
           <td class="fw-bold">プロフィール画像</td>

@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "おホメの言葉ありがとうございます！反映まで今しばらくお待ちください。"
+      flash[:notice] = "おホメの言葉ありがとうございます！反映まで今しばらくお待ちください..."
       redirect_to post_path(@post)
     else
       render :new

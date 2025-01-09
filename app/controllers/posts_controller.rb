@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
-  # ログインしていないユーザーを制限!
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  # ログインユーザー以外の投稿編集・削除を制限!
   before_action :is_matching_login_post_user, only: [:edit, :update, :destroy]
 
   def new
@@ -12,7 +10,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "投稿が完了しました！"
+      flash[:notice] = "おホメの言葉ありがとうございます！反映まで今しばらくお待ちください。"
       redirect_to post_path(@post)
     else
       render :new

@@ -26,8 +26,11 @@
           </ul>
         </div>
       </nav>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+<% flash.each do |key, message| %>
+  <div class="alert alert-<%= bootstrap_flash_class(key) %> alert-dismissible fade show" role="alert">
+    <%= message %>
+  </div>
+<% end %>
     </header>
     <%= yield %>
   </body>

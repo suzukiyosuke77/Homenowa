@@ -14,7 +14,7 @@
           <td class="fw-bold">自己紹介</td>
           <td>
             <div style="max-height: 100px; overflow-y: auto;">
-              <%= user.introduction.presence || "自己紹介がありません" %>
+              <%= user.introduction.presence || "まだ自己紹介がありません" %>
             </div>
           </td>
         </tr>
@@ -22,7 +22,7 @@
           <td class="fw-bold">プロフィール画像</td>
           <td class="text-center">
             <% if user.profile_image.attached? %>
-              <%= image_tag user.get_profile_image(150, 150), alt: "プロフィール画像", class: "img-thumbnail rounded-circle" %>
+              <%= image_tag user.get_profile_image(125, 125), alt: "あなたのプロフィール画像", class: "img-thumbnail rounded-circle" %>
             <% else %>
               <%= image_tag 'no_image', size: "150x150", alt: "デフォルト画像", class: "img-thumbnail rounded-circle" %>
             <% end %>
@@ -35,7 +35,7 @@
         <i class="fa-solid fa-user-gear"></i> プロフィール編集
       <% end %>
       <% if user_signed_in? && current_user == user && user.email != "test@example.com" %>
-        <%= link_to "退会", user_path(user.id), class: "btn btn-outline-danger px-4", method: :delete, data: { confirm: "本当に退会しますか？" } %>
+        <%= link_to "退会", user_path(user.id), class: "btn btn-outline-danger px-4", method: :delete, data: { confirm: "本当に退会しますか...？" } %>
       <% end %>
     </div>
   </div>

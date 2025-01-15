@@ -1,7 +1,7 @@
 <div class="mb-4">
   <%= form_with model: [@post, @post_comment], local: true, class: "d-flex flex-column align-items-end" do |f| %>
     <div class="form-group w-100">
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+      <%= f.text_area :comment, rows: '5', placeholder: "11年ぶりにこの作品を観劇しました。人生初観劇がこの作品で、その時の衝撃が大きく、ずっとまた観たいと思っていました。「あの時の○○だ！」と嬉しくなりました。物語、音楽、演出どれも素晴らしく、やっぱり大好きな演目でした。特に1幕の最後の「自由を求めて」は本当に熱量がすごく圧巻でした！改めてこの作品に出会えて本当に良かったなと思いました！感動をありがとうございました。", class: "form-control" %>
     </div>
     <%= f.submit "送信", class: "btn btn-primary mt-2" %>
   <% end %>

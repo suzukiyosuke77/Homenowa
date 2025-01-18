@@ -13,9 +13,7 @@
           </ul>
         </div>
       <% end %>
-
       <p class="text-center text-muted mb-4">投稿者: <%= current_user.name %></p>
-
       <%= form_with model: @post, local: true do |f| %>
       
         <div class="form-group mb-4">

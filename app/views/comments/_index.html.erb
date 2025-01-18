@@ -6,7 +6,7 @@
           <td class="text-center" style="width: 100px;">
             <% if post_comment.user %>
               <%= link_to user_path(post_comment.user), class: "text-decoration-none" do %>
-                <%= image_tag post_comment.user.get_profile_image(50, 50), class: "rounded-circle" %><br>
+                <%= image_tag post_comment.user.get_profile_image(65, 65), class: "rounded-circle" %><br>
                 <small><%= "#{post_comment.user.name}さん" %></small>
               <% end %>
             <% end %>

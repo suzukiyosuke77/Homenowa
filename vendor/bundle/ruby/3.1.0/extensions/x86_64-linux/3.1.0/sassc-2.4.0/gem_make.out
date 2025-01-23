@@ -1,12 +1,12 @@
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250119-24024-rqgsfb.rb extconf.rb
+/home/ec2-user/.rbenv/versions/3.1.4/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.4/lib/ruby/3.1.0 extconf.rb --use-system-libraries
 creating Makefile
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-make DESTDIR\= clean
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-4fmw38 sitelibdir\=./.gem.20250123-29403-4fmw38 clean
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-make DESTDIR\=
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-4fmw38 sitelibdir\=./.gem.20250123-29403-4fmw38
 compiling ./libsass/src/ast.cpp
 compiling ./libsass/src/ast2c.cpp
 compiling ./libsass/src/ast_fwd_decl.cpp
@@ -76,5 +76,5 @@ compiling ./libsass/src/values.cpp
 linking shared-object sassc/libsass.so
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-make DESTDIR\= install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20250119-24024-idm8d7/sassc
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-4fmw38 sitelibdir\=./.gem.20250123-29403-4fmw38 install
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20250123-29403-4fmw38/sassc

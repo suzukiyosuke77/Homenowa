@@ -1,25 +1,16 @@
-# frozen_string_literal: true
-# This migration comes from acts_as_taggable_on_engine (originally 6)
+class AddMissingUniqueIndices < ActiveRecord::Migration[6.1]
+  def up
+    # 外部キー制約を削除
+    remove_foreign_key :taggings, column: :tag_id if foreign_key_exists?(:taggings, column: :tag_id)
 
-class AddMissingIndexesOnTaggings < ActiveRecord::Migration[6.0]
-  def change
-    add_index ActsAsTaggableOn.taggings_table, :tag_id unless index_exists? ActsAsTaggableOn.taggings_table, :tag_id
-    add_index ActsAsTaggableOn.taggings_table, :taggable_id unless index_exists? ActsAsTaggableOn.taggings_table,
-                                                                                 :taggable_id
-    add_index ActsAsTaggableOn.taggings_table, :taggable_type unless index_exists? ActsAsTaggableOn.taggings_table,
-                                                                                   :taggable_type
-    add_index ActsAsTaggableOn.taggings_table, :tagger_id unless index_exists? ActsAsTaggableOn.taggings_table,
-                                                                               :tagger_id
-    add_index ActsAsTaggableOn.taggings_table, :context unless index_exists? ActsAsTaggableOn.taggings_table, :context
+    # インデックスを削除
+    remove_index :taggings, :tag_id if index_exists?(:taggings, :tag_id)
 
-    unless index_exists? ActsAsTaggableOn.taggings_table, %i[tagger_id tagger_type]
-      add_index ActsAsTaggableOn.taggings_table, %i[tagger_id tagger_type]
-    end
+    # 必要であれば、新しいインデックスを追加
+    add_index :tags, :name, unique: true unless index_exists?(:tags, :name)
+  end
 
-    unless index_exists? ActsAsTaggableOn.taggings_table, %i[taggable_id taggable_type tagger_id context],
-                         name: 'taggings_idy'
-      add_index ActsAsTaggableOn.taggings_table, %i[taggable_id taggable_type tagger_id context],
-                name: 'taggings_idy'
-    end
+  def down
+    # 元に戻す処理（必要に応じて記述）
   end
 end

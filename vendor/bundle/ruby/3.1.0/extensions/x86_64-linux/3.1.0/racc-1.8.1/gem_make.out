@@ -1,15 +1,15 @@
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
-/home/ec2-user/.rbenv/versions/3.1.2/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250119-24024-ffu4ft.rb extconf.rb
+/home/ec2-user/.rbenv/versions/3.1.4/bin/ruby -I /home/ec2-user/.rbenv/versions/3.1.4/lib/ruby/3.1.0 extconf.rb
 creating Makefile
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
-make DESTDIR\= clean
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-hw44ot sitelibdir\=./.gem.20250123-29403-hw44ot clean
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
-make DESTDIR\=
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-hw44ot sitelibdir\=./.gem.20250123-29403-hw44ot
 compiling cparse.c
 linking shared-object racc/cparse.so
 
 current directory: /home/ec2-user/Homenowa/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
-make DESTDIR\= install
-/usr/bin/install -c -m 0755 cparse.so ./.gem.20250119-24024-azxrfl/racc
+make DESTDIR\= sitearchdir\=./.gem.20250123-29403-hw44ot sitelibdir\=./.gem.20250123-29403-hw44ot install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20250123-29403-hw44ot/racc

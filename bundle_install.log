@@ -1,0 +1,12 @@
+nohup: ignoring input
+Fetching gem metadata from https://rubygems.org/...........
+Resolving dependencies...
+Installing puma 5.6.9 with native extensions
+Installing sassc 2.4.0 with native extensions
+Fetching sassc-rails 2.1.2
+Installing sassc-rails 2.1.2
+Fetching sass-rails 6.0.0
+Installing sass-rails 6.0.0
+Bundle complete! 32 Gemfile dependencies, 82 gems now installed.
+Gems in the groups 'test' and 'development' were not installed.
+Bundled gems are installed into `./vendor/bundle`

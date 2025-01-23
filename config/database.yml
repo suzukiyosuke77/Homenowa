@@ -27,6 +27,6 @@ production:
   charset: utf8mb4
   collation: utf8mb4_general_ci
   host: database-1.c1wmm8aggl33.eu-north-1.rds.amazonaws.com 
-  username: root # 環境変数または直接ユーザー名を設定
-  password: arumajiro # 環境変数または直接パスワードを設定
+  username: root
+  password: arumajiro
   database: Homenowa

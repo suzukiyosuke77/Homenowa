@@ -5,6 +5,8 @@ User.destroy_all
 Post.destroy_all
 puts "データの初期化が完了しました。"
 
+Admin.create!(email: "admin@test.com", password: "password")
+
 # テストユーザー
 test_user = User.find_or_create_by!(email: "aaa@example.com") do |user|
   user.name = "テストくん"

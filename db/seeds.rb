@@ -1,10 +1,5 @@
 require 'faker'
 
-puts "既存データを削除します..."
-User.destroy_all
-Post.destroy_all
-puts "データの初期化が完了しました。"
-
 Admin.create!(email: "admin@test.com", password: "password")
 
 # テストユーザー
@@ -15,9 +10,9 @@ test_user = User.find_or_create_by!(email: "aaa@example.com") do |user|
 end
 
 # 固定投稿データ
-Post.find_or_create_by!(title: "おもしろ落語でした", user: test_user) do |post|
+Post.find_or_create_by!(title: "最高のタイトルマッチでした...!", user: test_user) do |post|
   post.body = "省略"
-  post.category_list = "落語,滑稽噺"
+  post.category_list = "新日本プロレス,IWGPヘビー級選手権試合"
   post.rating = 3
 end
 
@@ -33,10 +28,7 @@ end
   Post.create!(
     title: Faker::Lorem.sentence(word_count: 5),
     body: Faker::Lorem.paragraph(sentence_count: 3),
-    category_list: ["落語","滑稽噺","怪談噺","人情噺", 
-    "歌舞伎","時代物","世話物","舞踊", 
-    "映画", "アニメ", "ホラー","SF","アクション","伝記","コメディ", "犯罪","ドキュメンタリー","ドラマ","ファミリー","ファンタジー","ミステリー","スリラー",
-    "音楽","ポップス","ロック","ダンス","ジャズ","ラテン","クラシック","ラップ","ハードロック","メタル","ソフトロック","ゴシック","歌謡曲"].sample(2).join(","),
+    category_list: ["新日本プロレス","全日本プロレス","プロレスリングNOA","DDT","大日本プロレス","FREEDOMS","スターダム","マリーゴールド","WWE","AEW","タッグマッチ","デスマッチ","蛍光灯"].sample(2).join(","),
     rating: 3,
     user: user
   )

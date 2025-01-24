@@ -4,12 +4,13 @@
       <% post.post_comments.each do |post_comment| %>
         <tr>
           <td class="text-center" style="width: 100px;">
-            <% if post_comment.user %>
-              <%= link_to user_path(post_comment.user), class: "text-decoration-none" do %>
-                <%= image_tag post_comment.user.get_profile_image(65, 65), class: "rounded-circle" %><br>
-                <small><%= "#{post_comment.user.name}さん" %></small>
-              <% end %>
+          <% if post_comment.user %>
+            <%= link_to user_path(post_comment.user), class: "text-decoration-none" do %>
+              <% profile_image = post_comment.user.profile_image.attached? ? post_comment.user.get_profile_image(25, 25) : 'no_image.png' %>
+              <%= image_tag(profile_image, class: "rounded-circle") %><br>
+              <small><%= "#{post_comment.user.name}さん" %></small>
             <% end %>
+          <% end %>
           </td>
           <td>
             <p class="mb-0"><%= post_comment.comment %></p>

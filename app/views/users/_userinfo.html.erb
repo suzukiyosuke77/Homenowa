@@ -24,7 +24,7 @@
             <% if user.profile_image.attached? %>
               <%= image_tag user.get_profile_image(125, 125), alt: "あなたのプロフィール画像", class: "img-thumbnail rounded-circle" %>
             <% else %>
-              <%= image_tag 'no_image.jpg', size: "150x150", alt: "デフォルト画像", class: "img-thumbnail rounded-circle" %>
+              <%= image_tag 'no_image.png', size: "150x150", alt: "デフォルト画像", class: "img-thumbnail rounded-circle" %>
             <% end %>
           </td>
         </tr>

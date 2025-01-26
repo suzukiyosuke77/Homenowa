@@ -26,12 +26,22 @@
           </ul>
         </div>
       </nav>
-<% flash.each do |key, message| %>
-  <div class="alert alert-<%= bootstrap_flash_class(key) %> alert-dismissible fade show" role="alert">
-    <%= message %>
-  </div>
-<% end %>
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= bootstrap_flash_class(key) %> alert-dismissible fade show" role="alert">
+          <%= message %>
+        </div>
+      <% end %>
     </header>
-    <%= yield %>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="bg-dark text-light py-3 mt-auto">
+      <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Homenowa. All Rights Reserved.</p>
+        <small>プロレスとエンタメを応援するコミュニティ</small>
+      </div>
+    </footer>
   </body>
 </html>

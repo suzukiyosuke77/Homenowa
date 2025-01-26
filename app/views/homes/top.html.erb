@@ -1,25 +1,110 @@
 <div class="container">
-    <div class="text-center">
-      <h1 class="px-3 mx-auto">
-        <i class="fa-regular fa-handshake"></i> ホメノワにようこそ！ <i class="fa-regular fa-handshake"></i>
-      </h1>
-      <h2>ホメノワについて</h2>
-      <p>
-        <strong>ホメノワは、プロレスファンのために作られたレビュー共有プラットフォームです！</strong><br>
-        会員は感動した試合や熱狂したイベントについて、管理人チェックを通した<strong>「ポジティブな」レビュー</strong>だけを投稿できます。<br>
-        <em>（性質上、投稿から公開までにお時間いただきますが、のんびりとお待ちください。）</em>
-      </p>
-      <p>
-        多種多様な意見が溢れるSNSや掲示板に疲れてしまった方、<br>
-        <strong>「ポジティブな意見だけを見て、気持ちよく楽しみたい！」</strong>という方にオススメのサービスです。<br>
-      </p>
-      <p>
-        <strong>プロレスに情熱を持つ皆さんで、最高の試合や選手への思いを共有し合いましょう！</strong>
-      </p>
-    </div>
+  <div class="text-center">
+    <h1 class="px-3 mx-auto">
+      <i class="fa-regular fa-handshake"></i> ホメノワにようこそ！ <i class="fa-regular fa-handshake"></i>
+    </h1>
+    <h2>ホメノワについて</h2>
+    <p>
+      <strong>ホメノワは、プロレスファンのために作られたレビュー共有プラットフォームです！</strong><br>
+      会員は感動した試合や熱狂したイベントについて、管理人チェックを通した<strong>「ポジティブな」レビュー</strong>だけを投稿できます。<br>
+      <em>（性質上、投稿から公開までにお時間いただきますが、のんびりとお待ちください。）</em>
+    </p>
+    <p>
+      多種多様な意見が溢れるSNSや掲示板に疲れてしまった方、<br>
+      <strong>「ポジティブな意見だけを見て、気持ちよく楽しみたい！」</strong>という方にオススメのサービスです。<br>
+    </p>
+    <p>
+      <strong>プロレスに情熱を持つ皆さんで、最高の試合や選手への思いを共有し合いましょう！</strong>
+    </p>
+  </div>
+
   <div class="row justify-content-center mt-5">
     <div class="col-md-6 col-12 text-center">
       <%= image_tag 'Homenowa.png', alt: 'Homenowa Logo', class: 'img-fluid', style: 'max-width: 100%; height: auto; width: 80%;' %>
     </div>
   </div>
 </div>
+
+<nav class="navbar navbar-expand-sm" style="background-color: #343a40;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
+    <ul class="navbar-nav">
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-user-cog"></i> 会員一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_posts_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-book-open"></i> 全てのレビュー
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to post_ranking_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-ranking-star"></i> レビューランキング
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-link text-decoration-none" do %>
+            <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+      <% elsif user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to root_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-house"></i> トップ
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to posts_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-book-open"></i> レビューを見る
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_post_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-pen"></i> 新規投稿
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to post_ranking_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-ranking-star"></i> レビューランキング
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-link text-decoration-none" do %>
+            <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-user-plus"></i> 会員登録
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to posts_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-book-open"></i> レビューを見る
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to post_ranking_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-ranking-star"></i> レビューランキング
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+            <i class="fa-solid fa-right-to-bracket"></i> ログイン
+          <% end %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to about_path, class: "nav-link text-light" do %>
+          <i class="fa-regular fa-handshake"></i> <span style="color: red;">まずはここから！プロレス観戦ガイド</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

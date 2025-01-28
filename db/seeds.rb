@@ -4,7 +4,7 @@ Admin.create!(email: "admin@test.com", password: "password")
 
 # テストユーザー
 test_user = User.find_or_create_by!(email: "aaa@example.com") do |user|
-  user.name = "テストくん"
+  user.name = "テスト"
   user.password = "password"
   user.introduction = "テストです"
 end
@@ -28,7 +28,7 @@ end
   Post.create!(
     title: Faker::Lorem.sentence(word_count: 5),
     body: Faker::Lorem.paragraph(sentence_count: 3),
-    category_list: ["新日本プロレス","全日本プロレス","プロレスリングNOA","DDT","大日本プロレス","FREEDOMS","スターダム","マリーゴールド","WWE","AEW","タッグマッチ","デスマッチ","蛍光灯"].sample(2).join(","),
+    category_list: ["新日本プロレス","全日本プロレス","プロレスリングNOA","DDT","DRAGON GATE","大日本プロレス","FREEDOMS","スターダム","マリーゴールド","WWE","AEW","タッグマッチ","デスマッチ","蛍光灯"].sample(2).join(","),
     rating: 3,
     user: user
   )

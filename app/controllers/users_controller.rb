@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if @user.nil?
       redirect_to root_path, alert: "無効な会員です…"
     else
-      @posts = @user.posts
+      @posts = @user.posts.where(deleted_at: nil).page(params[:page]).per(10)
     end
   end
 

@@ -11,7 +11,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
+    if @user.update(deleted_at: Time.current)
       redirect_to admin_users_path, notice: '会員を退会させました。'
     else
       redirect_to admin_users_path, alert: '退会処理に失敗しました。'

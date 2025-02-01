@@ -56,9 +56,10 @@
 
       <% else %>
         <li class="nav-item">
-          <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
-            <i class="fa-solid fa-user-plus"></i> 会員登録
-          <% end %>
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to posts_path, class: "nav-link text-light" do %>
@@ -68,11 +69,6 @@
         <li class="nav-item">
           <%= link_to post_ranking_path, class: "nav-link text-light" do %>
             <i class="fa-solid fa-ranking-star"></i> レビューランキング
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_user_session_path, class: "nav-link text-light" do %>
-            <i class="fa-solid fa-right-to-bracket"></i> ログイン
           <% end %>
         </li>
       <% end %>

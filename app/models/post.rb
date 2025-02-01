@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  acts_as_paranoid
+  
   enum status: { pending: 0, approved: 1, rejected: 2 }
   belongs_to :user
   has_many :tags

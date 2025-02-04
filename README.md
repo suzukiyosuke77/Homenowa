@@ -21,11 +21,13 @@ SNSや掲示板でのネガティブな意見に疲れ、ポジティブな意�
 後ほど作成予定。
 
 ## 開発環境
-OS: Linux(CentOS)
+OS: macOS（M3チップ）
+クラウド環境: AWS（EC2, RDS）
 言語: HTML, CSS, JavaScript, Ruby, SQL
 フレームワーク: Ruby on Rails
 JSライブラリ: jQuery
-IDE: VScode
+IDE: VSCode（SSH接続で開発）
+バージョン管理: Git / GitHub
 
 ## 使用素材
 イラスト: イラストや

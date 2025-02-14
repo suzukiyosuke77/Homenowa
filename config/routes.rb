@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'reports/create'
+  get 'reports/index'
+  get 'reports/destroy'
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/sessions'
   }

@@ -13,10 +13,13 @@ class ReportsController < ApplicationController
     redirect_to @post
   end
 
-
-  end
-
+  #管理者通報機能
   def index
+    if current_user.admin?
+      @reports = Report.order(created_at: :desc)
+    else
+      redirect_to root_path, alert: "アクセス権がありません"
+    end
   end
 
   def destroy

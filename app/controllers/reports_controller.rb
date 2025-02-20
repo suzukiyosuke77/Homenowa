@@ -23,5 +23,15 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    @report = Report.find(params[:id])
+    if current_user.admin?
+      @report.destroy
+      flash[:notice] = "通報を削除しました。"
+    else
+      flash[:alert] = "アクセス権がありません。"
+    end
+    redirect_to reports_path
+  end
+  
   end
 end

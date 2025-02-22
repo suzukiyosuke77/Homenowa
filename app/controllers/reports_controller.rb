@@ -32,6 +32,14 @@ class ReportsController < ApplicationController
     end
     redirect_to reports_path
   end
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  def report_params
+    params.require(:report).permit(:reason)
+  end
   
   end
 end

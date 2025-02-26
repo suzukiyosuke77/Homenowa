@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
+  before_action :set_post, only: [:create]
 
-  
   def create
     @report = @post.reports.new(report_params)
     @report.user = current_user
@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
     else
       flash[:alert] = "通報に失敗しました..."
     end
-    redirect_to @post
+    redirect_to post_path(@post)
   end
 
   #管理者通報機能
@@ -33,13 +33,13 @@ class ReportsController < ApplicationController
     redirect_to reports_path
   end
 
+  private
+
   def set_post
     @post = Post.find(params[:post_id])
   end
 
   def report_params
     params.require(:report).permit(:reason)
-  end
-  
   end
 end

@@ -1,32 +1,34 @@
+# Puma のスレッド設定
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
-worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
+# 環境設定
+environment ENV.fetch("RAILS_ENV") { "production" }
 
+# ポートの設定
 port ENV.fetch("PORT") { 3000 }
-environment ENV.fetch("RAILS_ENV") { "development" }
 
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-
+# マルチプロセス設定
 workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 preload_app!
 
-plugin :tmp_restart
+# Rails のルートディレクトリを取得
+app_dir = File.expand_path("..", __dir__)
 
-rails_root = Dir.pwd
+# Unix ソケットの設定
+bind "unix://#{app_dir}/tmp/sockets/puma.sock"
 
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-rails_root = Dir.pwd
-# 本番環境のみデーモン起動
-if Rails.env.production?
-  pidfile File.join(rails_root, 'tmp', 'pids', 'puma.pid')
-  state_path File.join(rails_root, 'tmp', 'pids', 'puma.state')
+# 本番環境用の設定
+if ENV.fetch("RAILS_ENV", "development") == "production"
+  pidfile File.join(app_dir, 'tmp', 'pids', 'puma.pid')
+  state_path File.join(app_dir, 'tmp', 'pids', 'puma.state')
   stdout_redirect(
-    File.join(rails_root, 'log', 'puma.log'),
-    File.join(rails_root, 'log', 'puma-error.log'),
+    File.join(app_dir, 'log', 'puma.log'),
+    File.join(app_dir, 'log', 'puma-error.log'),
     true
   )
-  # デーモン
   daemonize
 end
+
+plugin :tmp_restart

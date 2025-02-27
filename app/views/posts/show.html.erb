@@ -32,9 +32,13 @@
               <% end %>
             </td>
             <td>
+            <% if @post.category_list.present? %>
               <% @post.category_list.each do |category| %>
                 <%= category %>
               <% end %>
+            <% else %>
+              <span class="text-muted">カテゴリなし</span>
+            <% end %>
             </td>
             <td>
               <div class="d-flex align-items-center">
@@ -46,12 +50,16 @@
               </div>
             </td>
             <td>
-            <%= form_with model: [ @post, Report.new ], local: true do |f| %>
-              <div>
-                <%= f.label :reason, "通報理由" %>
-                <%= f.text_area :reason, rows: 3 %>
-              </div>
-              <%= f.submit "通報する", class: "btn btn-danger" %>
+            <% if current_user %>
+              <%= form_with model: [ @post, @post.reports.new(user: current_user) ], local: true do |f| %>
+                <div>
+                  <%= f.label :reason, "通報理由" %>
+                  <%= f.text_area :reason, rows: 3 %>
+                </div>
+                <%= f.submit "通報する", class: "btn btn-danger" %>
+              <% end %>
+            <% else %>
+              <p class="text-muted">通報するにはログインが必要です。</p>
             <% end %>
             </td>
           </tr>

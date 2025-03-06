@@ -38,5 +38,9 @@ class Post < ApplicationRecord
       errors.add(:category_list, "を入力してください")
     end
   end
+
+  def flagged?
+    reports.count >= 5
+  end
   
 end

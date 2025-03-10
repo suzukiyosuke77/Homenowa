@@ -40,8 +40,8 @@ class Post < ApplicationRecord
     end
   end
 
-  def flagged?
-    reports.count >= 5
-  end
+  #def flagged?
+    #reports.count >= 5
+  #end
   
 end

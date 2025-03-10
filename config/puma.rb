@@ -10,7 +10,7 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 port ENV.fetch("PORT") { 3000 }
 
 # マルチプロセス設定
-workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 preload_app!
 
 # Rails のルートディレクトリを取得

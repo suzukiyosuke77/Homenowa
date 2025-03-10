@@ -26,7 +26,7 @@
         </thead>
         <tbody>
         <% @posts.each do |post| %>
-          <% unless post.flagged? %>
+          <% if post.respond_to?(:flagged?) && !post.flagged? %>
             <tr>
               <td class="text-center"><%= l post.created_at, format: :short %></td>
               <td class="text-center">

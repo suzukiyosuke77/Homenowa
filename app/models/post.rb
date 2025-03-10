@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :tags
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :reports
 
   validate :validate_categories_presence
   validates :title, presence: true
